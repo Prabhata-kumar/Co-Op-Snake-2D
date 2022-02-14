@@ -10,11 +10,20 @@ public class Snake : MonoBehaviour
 
     public Transform segementPrefab;
 
-    public int initialSize = 3;
+    [SerializeField] private int initialSize = 3;
 
     private void Start()
     {
         ResetState();
+
+        StartCoroutine(ChainRoutine());
+    }
+
+    private IEnumerator ChainRoutine()
+    {
+        Debug.Log("hi");
+        yield return StartCoroutine(DemoCoroutine());
+        Debug.Log("hola");
     }
 
     //private float speed = 1f;
@@ -79,7 +88,7 @@ public class Snake : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "food")
+        if (other.CompareTag("food"))
         {
            Grow();
         }
@@ -88,6 +97,27 @@ public class Snake : MonoBehaviour
             ResetState();
         }
 
+    }
+
+    private IEnumerator DemoCoroutine()
+    {
+        Debug.Log("Hello");
+        WaitForSecondsRealtime waitForSecondsRealtime = new WaitForSecondsRealtime(5);
+        yield return waitForSecondsRealtime;
+        Debug.Log("Hello I have waited 5 seconds!");
+    }
+
+    private void DemoMethod()
+    {
+
+    }
+}
+
+public static class GameObjectExtenstions
+{
+    public static void Hello(this GameObject gameObject)
+    {
+        Debug.Log("Hello " + gameObject);
     }
 }
   
