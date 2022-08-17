@@ -6,6 +6,9 @@ TagManager:
   tags:
   - food
   - Obstacle
+  - Player1
+  - snake 1
+  - snake 2
   layers:
   - Default
   - TransparentFX

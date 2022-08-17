@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4026386442227468319}
   - component: {fileID: 6628571012586682259}
   m_Layer: 0
-  m_Name: Snake sagement
+  m_Name: Snake sagement 2
   m_TagString: snake 1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.9339623, g: 0.022027409, b: 0.022027409, a: 1}
+  m_Color: {r: 0.023529414, g: 0.16078432, b: 0.9333334, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

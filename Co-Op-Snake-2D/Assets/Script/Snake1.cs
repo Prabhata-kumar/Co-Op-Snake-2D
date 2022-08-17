@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake : MonoBehaviour
+public class Snake1 : MonoBehaviour
 {
-    private Vector2 diraction = Vector2.right;
+    private Vector2 diraction = Vector2.left;
 
     private List<Transform> _segments = new List<Transform> ();
 
@@ -14,16 +14,9 @@ public class Snake : MonoBehaviour
 
     private void Start()
     {
+
+        StartCoroutine(DemoCoroutine());
         ResetState();
-
-        StartCoroutine(ChainRoutine());
-    }
-
-    private IEnumerator ChainRoutine()
-    {
-        Debug.Log("hi");
-        yield return StartCoroutine(DemoCoroutine());
-        Debug.Log("hola");
     }
 
     //private float speed = 1f;
@@ -66,8 +59,6 @@ public class Snake : MonoBehaviour
         segment.position = _segments[_segments.Count - 1].position;
 
         _segments.Add(segment);
-
-        
     }
 
     private void ResetState()
@@ -92,32 +83,18 @@ public class Snake : MonoBehaviour
         {
            Grow();
         }
-        else if (other.tag == "Obstacle")
+        else if (other.tag == "Obstacle" || other.tag == "snake 2")
         {
             ResetState();
         }
-
     }
 
     private IEnumerator DemoCoroutine()
     {
-        Debug.Log("Hello");
-        WaitForSecondsRealtime waitForSecondsRealtime = new WaitForSecondsRealtime(5);
-        yield return waitForSecondsRealtime;
-        Debug.Log("Hello I have waited 5 seconds!");
-    }
-
-    private void DemoMethod()
-    {
-
+        WaitForSecondsRealtime waitForSecondsRealtime = new WaitForSecondsRealtime(10);
+        yield return waitForSecondsRealtime; 
     }
 }
 
-public static class GameObjectExtenstions
-{
-    public static void Hello(this GameObject gameObject)
-    {
-        Debug.Log("Hello " + gameObject);
-    }
-}
+
   
