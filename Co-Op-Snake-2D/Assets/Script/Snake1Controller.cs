@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Snake2 : MonoBehaviour
+public class Snake1Controller : MonoBehaviour
 {
-    private Vector2 diraction = Vector2.right;
+    //public float speed = 5f;
 
-    private List<Transform> _segments = new List<Transform>();
+    private Vector2 diraction = Vector2.left ;
+
+    private List<Transform> _segments = new List<Transform> ();
 
     public Transform segementPrefab;
 
+    public  GameObject food;
+
     [SerializeField] private int initialSize = 3;
 
+  
     private void Start()
     {
 
@@ -22,21 +27,21 @@ public class Snake2 : MonoBehaviour
     //private float speed = 1f;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             diraction = Vector2.up;
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            diraction = Vector2.down;
+            diraction = Vector2.down;    
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            diraction = Vector2.left;
+            diraction = Vector2.left ;
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            diraction = Vector2.right;
+            diraction = Vector2.right ;
         }
     }
 
@@ -44,15 +49,15 @@ public class Snake2 : MonoBehaviour
     {
         for (int i = _segments.Count - 1; i > 0; i--)
         {
-            _segments[i].position = _segments[i - 1].position;
+            _segments[i].position = _segments[i-1].position;
         }
         this.transform.position = new Vector3
             (
-            Mathf.Round(this.transform.position.x) + diraction.x,
-            Mathf.Round(this.transform.position.y) + diraction.y,
+            Mathf.Round(this.transform.position.x)+ diraction.x,
+            Mathf.Round(this.transform.position.y)+ diraction.y,
               0.0f);
     }
-
+    
     private void Grow()
     {
         Transform segment = Instantiate(this.segementPrefab);
@@ -61,9 +66,16 @@ public class Snake2 : MonoBehaviour
         _segments.Add(segment);
     }
 
+    private void Decrease()
+    {
+        Transform segment = Instantiate(this.segementPrefab);
+        segment.position = _segments[_segments.Count + 1].position;
+
+        _segments.Remove(segment);
+    }
     private void ResetState()
     {
-        for (int i = 1; i < _segments.Count; i++)
+        for (int i =1;i < _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);
         }
@@ -81,19 +93,26 @@ public class Snake2 : MonoBehaviour
     {
         if (other.CompareTag("food"))
         {
-            Grow();
+           Grow();
+         Destroy(other.gameObject);
         }
         else if (other.tag == "Obstacle" || other.tag == "snake 2")
         {
             ResetState();
+        }
+        else if(other.tag == "Posion")
+        {
+            Decrease();
+            Destroy(other.gameObject);
         }
     }
 
     private IEnumerator DemoCoroutine()
     {
         WaitForSecondsRealtime waitForSecondsRealtime = new WaitForSecondsRealtime(10);
-        yield return waitForSecondsRealtime;
+        yield return waitForSecondsRealtime; 
     }
 }
 
 
+  

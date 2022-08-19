@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Co-Op-Snake-2D.unity
+    path: Assets/Scenes/game Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Lobby scene.unity
+    guid: 399de2d00f8bce448bb016e92a88d0ce
   m_configObjects: {}

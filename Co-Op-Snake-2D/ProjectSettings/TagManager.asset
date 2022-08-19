@@ -9,6 +9,8 @@ TagManager:
   - Player1
   - snake 1
   - snake 2
+  - Poisen
+  - PowerUp
   layers:
   - Default
   - TransparentFX
