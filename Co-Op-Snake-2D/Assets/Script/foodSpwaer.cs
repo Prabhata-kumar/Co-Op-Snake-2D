@@ -10,10 +10,10 @@ public class foodSpwaer : MonoBehaviour
     public Transform foodPrefab3;
     private void Update()
     {
-        //RandomizePosition();
-        InvokeRepeating("RandomizePositionForFood", 3, 4);
-        InvokeRepeating("RandomizePositionForPoisen", 3, 10);
-        InvokeRepeating("SuperPower", 3, 20);
+       
+        InvokeRepeating("RandomizePositionForFood", 1, 4);
+        //InvokeRepeating("RandomizePositionForPoisen", 5, 1);
+        //InvokeRepeating("SuperPower", 20, 1);
     }
 
     public void RandomizePositionForFood()

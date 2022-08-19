@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LoadScrene : MonoBehaviour
 {
-    public void LoadScreen(int sceneIndex)
+    public void MoveScreen(int ScrenID)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        SceneManager.LoadScene(ScrenID);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
