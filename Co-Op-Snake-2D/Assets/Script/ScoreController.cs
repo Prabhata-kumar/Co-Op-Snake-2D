@@ -28,7 +28,7 @@ public class ScoreController : MonoBehaviour
             if(scoreValue < 0)
             {
                 scoreValue = 0;
-                snake1Controller.ResetState();
+               // snake1Controller.ResetState();
             }
             
         }

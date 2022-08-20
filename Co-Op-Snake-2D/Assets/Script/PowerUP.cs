@@ -22,6 +22,6 @@ public class PowerUP : MonoBehaviour
        Player1.transform.localScale*=multiplayer;
        //stop after sometime 
        Destroy(gameObject);
-        Debug.Log("Yes Still it working");
+        
     }
 }

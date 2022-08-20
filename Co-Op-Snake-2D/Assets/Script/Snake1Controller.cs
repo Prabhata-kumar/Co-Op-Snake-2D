@@ -64,7 +64,6 @@ public class Snake1Controller : MonoBehaviour
     {
         if (_segments.Count == 1)   //if body is too short
         {
-            Debug.Log("Game Ended");
             ResetState();
         }
         else                        
@@ -91,7 +90,7 @@ public class Snake1Controller : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("food"))//to gain the body
+        if (other.tag == "food")//to gain the body
         {         
                 Grow();
                 Destroy(other.gameObject);
