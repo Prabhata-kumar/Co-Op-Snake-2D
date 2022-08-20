@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 654614855075724229}
   - component: {fileID: 654614855075724228}
-  - component: {fileID: 654614855075724231}
   - component: {fileID: 654614855075724226}
   m_Layer: 0
   m_Name: super Power
@@ -84,20 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &654614855075724231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654614855075724230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e8c176fc6e9b144b42759f8a62188c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiplayer: 0.9
-  Player1: {fileID: 0}
 --- !u!58 &654614855075724226
 CircleCollider2D:
   m_ObjectHideFlags: 0

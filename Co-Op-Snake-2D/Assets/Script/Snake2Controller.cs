@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class Snake2Controller : MonoBehaviour
 {
-    private Vector2 diraction = Vector2.right;
-
-    private List<Transform> _segments = new List<Transform>();
 
     public Transform segementPrefab;
 
-    [SerializeField] private int initialSize = 3;
+    private Vector2 diraction = Vector2.left;
 
-    public float speed = 1;
+    private List<Transform> _segments = new List<Transform>();
+
+    private ScoreController scoreControllerObject;
+
+    private int JustValue = 0;
+
+    [SerializeField] private int initialSize = 3;
 
     private void Start()
     {
-        StartCoroutine(DemoCoroutine());
         ResetState();
     }
 
+    //private float speed = 1f;
     private void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.W))
         {
-            diraction = Vector2.up *Time.deltaTime*speed;
+            diraction = Vector2.up ;
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
@@ -40,17 +44,14 @@ public class Snake2Controller : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate()             //Help it to attach the segement's position on in a sequence
     {
         for (int i = _segments.Count - 1; i > 0; i--)
         {
             _segments[i].position = _segments[i - 1].position;
         }
         this.transform.position = new Vector3
-            (
-            Mathf.Round(this.transform.position.x) + diraction.x,
-            Mathf.Round(this.transform.position.y) + diraction.y,
-              0.0f);
+            (Mathf.Round(this.transform.position.x) + diraction.x, Mathf.Round(this.transform.position.y) + diraction.y, 0.0f);
     }
 
     private void Grow()
@@ -58,10 +59,23 @@ public class Snake2Controller : MonoBehaviour
         Transform segment = Instantiate(this.segementPrefab);
         segment.position = _segments[_segments.Count - 1].position;
 
-        _segments.Add(segment);
+        _segments.Add(segment);                     //Adding neqw segement's
     }
 
-    private void ResetState()
+    private void Loss()
+    {
+        if (_segments.Count == 1)   //if body is too short
+        {
+            Debug.Log("Game Ended");
+            ResetState();
+        }
+        else
+        {
+            Destroy(_segments[_segments.Count - 1].gameObject);
+            _segments.RemoveAt(_segments.Count - 1);   //If one is doe't work 2nd will work
+        }
+    }
+    public void ResetState()
     {
         for (int i = 1; i < _segments.Count; i++)
         {
@@ -77,24 +91,24 @@ public class Snake2Controller : MonoBehaviour
 
         this.transform.position = Vector3.zero;
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("food"))
+        if (other.CompareTag("food"))//to gain the body
         {
             Grow();
+            Destroy(other.gameObject);
         }
-        else if (other.tag == "Obstacle" || other.tag == "snake 2")
+        else if (other.tag == "Obstacle") //Same tag to body also
         {
             ResetState();
         }
+        else if (other.tag == "Posion")//for loss the body 
+        {
+            Loss();
+            Destroy(other.gameObject);
+        }
     }
 
-    private IEnumerator DemoCoroutine()
-    {
-        WaitForSecondsRealtime waitForSecondsRealtime = new WaitForSecondsRealtime(10);
-        yield return waitForSecondsRealtime;
-    }
 }
 
 

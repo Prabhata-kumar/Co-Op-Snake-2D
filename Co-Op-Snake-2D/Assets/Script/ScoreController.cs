@@ -1,42 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 using System;
 
 public class ScoreController : MonoBehaviour
 {
-    private TextMeshProUGUI scoreText;
+    private Snake1Controller snake1Controller;
+    private Text HighScoreText;
+    private int max;
+    public Text scoreText;
     private int scoreValue = 0;
-    private int scoreIntialValue = 0;
+   
 
-    private void Awake()
-    {
-        scoreText = GetComponent<TextMeshProUGUI>();
-    }
-    private void Start()
-    {
-        UpdateScore();
-    }
 
-    public void IncreaseScore(int increaseScore)
+   public void OnTriggerEnter2D(Collider2D other)
     {
-        scoreValue += increaseScore;
-
-        if (scoreValue <= 0)
+        if (other.CompareTag("food"))
         {
-            scoreValue = 0;
+            scoreValue++;
+            scoreText.text ="Score Player 1: "+ scoreValue.ToString();
         }
-        UpdateScore();
-    }
-    private void UpdateScore()
-    {
-        scoreText.text = "Score : " + scoreValue;
-    }
-
-    public void ResetScore()
-    {
-        scoreText.text = "Score : " + scoreIntialValue;
+        else if (other.CompareTag("Poisen"))
+        {
+            scoreValue--;
+            scoreText.text = "Score Player 1: " + scoreValue.ToString();
+            if(scoreValue < 0)
+            {
+                scoreValue = 0;
+                snake1Controller.ResetState();
+            }
+            
+        }
     }
 }
 
