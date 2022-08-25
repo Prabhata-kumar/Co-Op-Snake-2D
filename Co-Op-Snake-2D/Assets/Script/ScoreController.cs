@@ -25,11 +25,11 @@ public class ScoreController : MonoBehaviour
         {
             scoreValue--;
             scoreText.text = "Score Player 1: " + scoreValue.ToString();
-            if(scoreValue < 0)
+          /*  if(scoreValue < 0)
             {
                 scoreValue = 0;
                // snake1Controller.ResetState();
-            }
+            }*/
             
         }
     }

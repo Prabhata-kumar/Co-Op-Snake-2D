@@ -12,7 +12,7 @@ public class foodSpwaer : MonoBehaviour
     void Start()
     {
         InvokeRepeating("Spawn", 2, 4);
-        InvokeRepeating("RandomizePositionForPoisen", 1, 31);
+        InvokeRepeating("RandomizePositionForPoisen", 1, 21);
         InvokeRepeating("SuperPower", 1, 40);
     }
     void Spawn()
